@@ -20,7 +20,8 @@
 
 # misc
 .DS_Store
-*.pem
+Thumbs.db
+*.log
 
 # debug
 npm-debug.log*
@@ -28,8 +29,16 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files and secrets — никогда не публиковать
 .env*
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+*.local.json
 
 # vercel
 .vercel
@@ -42,7 +51,13 @@ next-env.d.ts
 /.sites-runtime/
 /.agents/
 /.codex/
+/.claude/
 /outputs/
 /work/
 
 *.tsbuildinfo
+
+# редакторы и IDE
+.vscode/*
+!.vscode/extensions.json
+.idea/
