@@ -4,8 +4,23 @@
 
 // Адрес, на котором опубликован лендинг (портфолио, не сайт клиники).
 // Нужен для абсолютных ссылок в Open Graph (превью в мессенджерах).
-// Временный домен на nip.io — поменять при переезде на постоянный домен.
-export const siteUrl = "https://eva-dent.72-56-30-71.nip.io";
+// Поддомен портфолио; старый адрес на nip.io перенаправляет сюда.
+export const siteUrl = "https://eva-dent.mkzv.ru";
+
+// Демо-концепт для показа клинике: плашка «не официальный сайт» и noindex,
+// чтобы демо не путали с настоящим сайтом и не конкурировало с ним в поиске.
+// Когда клиника примет сайт и он переедет на её домен — поставить false.
+export const isDemo = true;
+
+// Куда уходят заявки онлайн-записи. Пусто — демо-режим: заявка нигде не
+// сохраняется, посетитель видит экран «заявка принята (демо)».
+// Для боевого режима — URL обработчика, принимающего POST JSON
+// { service, doctor, date, time, name, phone, comment } (например, воркер,
+// пересылающий заявку администратору в Telegram).
+export const bookingEndpoint = "";
+
+// Подпись разработчика в подвале.
+export const developer = { label: "mkzv.ru", url: "https://mkzv.ru" };
 
 export const clinic = {
   name: "Ева Дент",
@@ -26,6 +41,8 @@ export const clinic = {
     { days: "Пн–Пт", time: "9:00–19:00" },
     { days: "Сб–Вс", time: "10:00–16:00" },
   ],
+  // Те же часы, что в hours, — в числах для выбора времени в онлайн-записи.
+  workHours: { weekday: { from: 9, to: 19 }, weekend: { from: 10, to: 16 } },
   geo: { lat: 55.100177, lon: 61.614657 },
   site: "https://evadent74.ru/",
   pricesUrl: "https://evadent74.ru/uslugi/",
@@ -195,22 +212,34 @@ export const lead = {
   quote: "Работа — моё призвание!",
 };
 
-export const team = [
+// bookingId — id врача в онлайн-записи (bookingDoctors); у медсестры его нет,
+// она не ведёт приём.
+export const team: { surname: string; name: string; role: string; bookingId?: string }[] = [
   {
     surname: "Шмидт",
     name: "Андрей Эдуардович",
     role: "Зубной врач",
+    bookingId: "shmidt",
   },
   {
     surname: "Горелова",
     name: "Алёна Владимировна",
     role: "Врач-стоматолог-ортодонт",
+    bookingId: "gorelova",
   },
   {
     surname: "Петрик",
     name: "Людмила Анатольевна",
     role: "Медицинская сестра",
   },
+];
+
+// Врачи, к которым можно записаться (медсестра не ведёт приём).
+export const bookingDoctors = [
+  { id: "any", name: "Любой врач", note: "Администратор подберёт по задаче" },
+  { id: "legotina", name: `${lead.surname} ${lead.name}`, note: "Терапевт, хирург, ортопед" },
+  { id: "shmidt", name: `${team[0].surname} ${team[0].name}`, note: team[0].role },
+  { id: "gorelova", name: `${team[1].surname} ${team[1].name}`, note: "Ортодонт" },
 ];
 
 // Отзывы пациентов опубликованы на https://evadent74.ru/otzyvy/.
@@ -273,7 +302,7 @@ export const faq: { q: string; a: string; link?: { href: string; label: string }
   },
   {
     q: "Как записаться на приём?",
-    a: `Позвоните по номеру ${clinic.phone}. Администратор поможет выбрать специалиста и удобное время.`,
+    a: `Онлайн — кнопкой «Записаться»: выберите направление, врача и удобное время, администратор перезвонит и подтвердит запись. Или позвоните по номеру ${clinic.phone}.`,
   },
 ];
 

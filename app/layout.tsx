@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/unbounded/wght.css";
 import "@fontsource-variable/manrope/wght.css";
 import "./globals.css";
-import { siteUrl } from "./content";
+import { isDemo, siteUrl } from "./content";
 
 const title = "Ева Дент — честная стоматология в Копейске";
 const description =
@@ -38,7 +38,8 @@ export const metadata: Metadata = {
     ],
   },
   twitter: { card: "summary_large_image", title, description },
-  robots: { index: true, follow: true },
+  // Демо не индексируем: не должно конкурировать с настоящим сайтом клиники.
+  robots: isDemo ? { index: false, follow: false } : { index: true, follow: true },
 };
 
 export const viewport: Viewport = {

@@ -1,8 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { clinic, faq, nav, type ServiceIcon } from "./content";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { openBooking } from "./booking";
+import { clinic, faq, isDemo, nav, type ServiceIcon } from "./content";
 import { Icon, type IconName } from "./icons";
+
+/* Клик по ссылке-записи открывает онлайн-запись; без JS остаётся звонок. */
+const bookingClick = (service?: string) => (event: React.MouseEvent) => {
+  if (event.metaKey || event.ctrlKey || event.shiftKey) return;
+  event.preventDefault();
+  openBooking(service);
+};
 
 /* Ссылка-кнопка: при наведении и фокусе иконка морфится в другую. */
 export function MorphLink({
@@ -13,6 +21,7 @@ export function MorphLink({
   hoverIcon = "arrow",
   external = false,
   ariaLabel,
+  booking,
 }: {
   href: string;
   children?: React.ReactNode;
@@ -21,6 +30,8 @@ export function MorphLink({
   hoverIcon?: IconName;
   external?: boolean;
   ariaLabel?: string;
+  /** true или название услуги — открыть онлайн-запись вместо перехода */
+  booking?: boolean | string;
 }) {
   const [on, setOn] = useState(false);
   return (
@@ -32,6 +43,7 @@ export function MorphLink({
       onPointerLeave={() => setOn(false)}
       onFocus={() => setOn(true)}
       onBlur={() => setOn(false)}
+      {...(booking ? { onClick: bookingClick(typeof booking === "string" ? booking : undefined) } : {})}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
       {children}
@@ -115,8 +127,9 @@ export function SiteHeader() {
         <MorphLink
           href={clinic.phoneHref}
           className="btn btn-accent header-cta"
-          icon="phone"
-          hoverIcon="diagonal"
+          icon="calendar"
+          hoverIcon="arrow"
+          booking
         >
           Записаться
         </MorphLink>
@@ -252,6 +265,10 @@ export function ServiceCard({
           Прайс<span className="sr-only">: {title} (сайт клиники)</span>
         </span>
       </a>
+      <button type="button" className="service-book" onClick={() => openBooking(title)}>
+        <Icon name="calendar" size={16} />
+        Записаться<span className="sr-only">: {title}</span>
+      </button>
     </article>
   );
 }
@@ -398,18 +415,116 @@ export function MobileBar({ routeHref }: { routeHref: string }) {
   }, []);
   return (
     <div className={`mobile-bar${show ? " is-visible" : ""}`} aria-hidden={!show}>
-      <a href={clinic.phoneHref} className="btn btn-accent" tabIndex={show ? 0 : -1}>
-        <Icon name="phone" size={18} /> Позвонить
+      <a
+        href={clinic.phoneHref}
+        className="btn btn-accent"
+        tabIndex={show ? 0 : -1}
+        onClick={bookingClick()}
+      >
+        <Icon name="calendar" size={18} /> Записаться
+      </a>
+      <a
+        href={clinic.phoneHref}
+        className="btn btn-ghost mobile-bar-call"
+        tabIndex={show ? 0 : -1}
+        aria-label={`Позвонить: ${clinic.phone}`}
+      >
+        <Icon name="phone" size={18} /> <span className="mobile-bar-label">Позвонить</span>
       </a>
       <a
         href={routeHref}
-        className="btn btn-ghost"
+        className="icon-btn icon-btn--light mobile-bar-route"
         target="_blank"
         rel="noopener noreferrer"
         tabIndex={show ? 0 : -1}
+        aria-label="Маршрут в Яндекс Картах"
       >
-        <Icon name="pin" size={18} /> Маршрут
+        <Icon name="pin" size={18} />
       </a>
+    </div>
+  );
+}
+
+/* Запись к конкретному врачу: услугу пациент выберет на первом шаге. */
+export function BookDoctorButton({
+  doctorId,
+  name,
+  className = "team-book",
+  children,
+}: {
+  doctorId: string;
+  name: string;
+  className?: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <button type="button" className={className} onClick={() => openBooking(undefined, doctorId)}>
+      {children ?? (
+        <>
+          Записаться<span className="sr-only"> к врачу: {name}</span>
+        </>
+      )}
+    </button>
+  );
+}
+
+/* Круглая кнопка на первом экране: текст по окружности, внутри — календарь. */
+export function RoundCta() {
+  return (
+    <a className="round-cta" href={clinic.phoneHref} onClick={bookingClick()}>
+      <svg viewBox="0 0 200 200" aria-hidden="true" className="round-cta-text">
+        <defs>
+          <path id="cta-circle" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0" />
+        </defs>
+        <text>
+          <textPath href="#cta-circle" textLength="486" lengthAdjust="spacing">
+            записаться онлайн • записаться онлайн •
+          </textPath>
+        </text>
+      </svg>
+      <span className="round-cta-icon">
+        <Icon name="calendar" size={28} strokeWidth={1.5} />
+      </span>
+      <span className="sr-only">Записаться на приём онлайн</span>
+    </a>
+  );
+}
+
+/* Плашка демо-версии: видна, пока isDemo = true в content.ts.
+   Скрытие помним до конца сессии; на сервере плашка всегда видна. */
+const noSubscribe = () => () => {};
+const readBannerHidden = () => {
+  try {
+    return sessionStorage.getItem("demo-banner") === "hidden";
+  } catch {
+    return false;
+  }
+};
+
+export function DemoBanner() {
+  const storedHidden = useSyncExternalStore(noSubscribe, readBannerHidden, () => false);
+  const [dismissed, setDismissed] = useState(false);
+  if (!isDemo || storedHidden || dismissed) return null;
+  return (
+    <div className="demo-banner" role="note">
+      <p>
+        <b>Демо-концепт</b> сайта «{clinic.name}». Официальный сайт —{" "}
+        <a href={clinic.site} target="_blank" rel="noopener noreferrer">
+          evadent74.ru
+        </a>
+      </p>
+      <button
+        type="button"
+        aria-label="Скрыть плашку"
+        onClick={() => {
+          setDismissed(true);
+          try {
+            sessionStorage.setItem("demo-banner", "hidden");
+          } catch {}
+        }}
+      >
+        <Icon name="close" size={16} />
+      </button>
     </div>
   );
 }

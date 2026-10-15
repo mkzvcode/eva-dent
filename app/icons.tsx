@@ -7,6 +7,8 @@ import {
   ArrowRight,
   ArrowUpRight,
   BadgeCheck,
+  CalendarDays,
+  Check,
   Clock,
   Crown,
   GraduationCap,
@@ -14,11 +16,13 @@ import {
   Mail,
   MapPin,
   Menu,
+  MessageCircle,
   Microscope,
   Minus,
   Phone,
   Plus,
   Quote,
+  Send,
   Smile,
   Sparkles,
   Syringe,
@@ -62,6 +66,10 @@ export const icons = {
   plus: Plus,
   minus: Minus,
   quote: Quote,
+  chat: MessageCircle,
+  calendar: CalendarDays,
+  check: Check,
+  send: Send,
 } satisfies Record<string, IconInput>;
 
 export type IconName = keyof typeof icons;

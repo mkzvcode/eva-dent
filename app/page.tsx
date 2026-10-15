@@ -1,6 +1,7 @@
 import {
   advantages,
   clinic,
+  developer,
   firstVisitPrice,
   lead,
   pricesDate,
@@ -12,13 +13,18 @@ import {
   yandexMapsUrl,
   yandexWidgetUrl,
 } from "./content";
+import { Assistant } from "./assistant";
+import { BookingDialog } from "./booking";
 import { Icon } from "./icons";
 import {
+  BookDoctorButton,
+  DemoBanner,
   Faq,
   MobileBar,
   MorphLink,
   RevealObserver,
   ReviewsTrack,
+  RoundCta,
   ServiceCard,
   SiteHeader,
 } from "./interactive";
@@ -91,6 +97,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema()) }}
       />
+      <DemoBanner />
       <SiteHeader />
       <RevealObserver />
 
@@ -136,28 +143,16 @@ export default function Home() {
               </div>
 
               <div className="hero-center">
-                <a className="round-cta" href={clinic.phoneHref}>
-                  <svg viewBox="0 0 200 200" aria-hidden="true" className="round-cta-text">
-                    <defs>
-                      <path id="cta-circle" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0" />
-                    </defs>
-                    <text>
-                      <textPath href="#cta-circle" textLength="486" lengthAdjust="spacing">
-                        записаться на приём • записаться на приём •
-                      </textPath>
-                    </text>
-                  </svg>
-                  <span className="round-cta-icon">
-                    <Icon name="phone" size={28} strokeWidth={1.5} />
-                  </span>
-                  <span className="sr-only">Позвонить и записаться на приём</span>
-                </a>
+                <RoundCta />
                 <p className="hero-lead">
                   Лечим, восстанавливаем и бережём зубы. Сначала
                   выясняем причину проблемы — потом лечим, чтобы результат
                   держался долго.
                 </p>
                 <div className="hero-actions">
+                  <MorphLink href={clinic.phoneHref} className="btn btn-accent" icon="calendar" booking>
+                    Записаться онлайн
+                  </MorphLink>
                   <MorphLink href={clinic.phoneHref} className="btn btn-dark" icon="phone">
                     {clinic.phone}
                   </MorphLink>
@@ -192,6 +187,18 @@ export default function Home() {
         </section>
 
         <Ticker />
+
+        {/* Акцент сразу под первым экраном — фирменная волнистая надпись. */}
+        <div className="smile-banner" aria-hidden="true">
+          <img
+            className="wave-word"
+            src="/images/smile-wave.svg"
+            alt=""
+            width={5995}
+            height={2332}
+            decoding="async"
+          />
+        </div>
 
         {/* 02 — о клинике */}
         <section className="about" id="about" aria-labelledby="about-title">
@@ -285,13 +292,23 @@ export default function Home() {
                   Осмотр и консультация. Врач составит план и назовёт
                   итоговую стоимость после осмотра.
                 </p>
-                <MorphLink
-                  href={clinic.pricesUrl}
-                  className="btn btn-light"
-                  external
-                >
-                  Полный прайс
-                </MorphLink>
+                <div className="services-actions">
+                  <MorphLink
+                    href={clinic.phoneHref}
+                    className="btn btn-accent"
+                    icon="calendar"
+                    booking
+                  >
+                    Записаться на осмотр
+                  </MorphLink>
+                  <MorphLink
+                    href={clinic.pricesUrl}
+                    className="btn btn-light"
+                    external
+                  >
+                    Полный прайс
+                  </MorphLink>
+                </div>
               </aside>
 
               <ul className="service-grid">
@@ -376,13 +393,32 @@ export default function Home() {
                         </h3>
                         <p>{person.role}</p>
                       </div>
-                      <span className="team-when">по записи</span>
+                      {person.bookingId ? (
+                        <BookDoctorButton
+                          doctorId={person.bookingId}
+                          name={`${person.surname} ${person.name}`}
+                        />
+                      ) : (
+                        <span className="team-when">по записи</span>
+                      )}
                     </li>
                   ))}
                 </ul>
-                <MorphLink href={clinic.specialistsUrl} className="btn btn-ghost" external>
-                  Сертификаты специалистов
-                </MorphLink>
+                <div className="lead-actions">
+                  <BookDoctorButton
+                    doctorId="legotina"
+                    name={`${lead.surname} ${lead.name}`}
+                    className="btn btn-accent"
+                  >
+                    Записаться к главному врачу
+                    <span className="btn-icon" aria-hidden="true">
+                      <Icon name="calendar" size={20} />
+                    </span>
+                  </BookDoctorButton>
+                  <MorphLink href={clinic.specialistsUrl} className="btn btn-ghost" external>
+                    Сертификаты специалистов
+                  </MorphLink>
+                </div>
               </div>
             </div>
           </div>
@@ -443,15 +479,6 @@ export default function Home() {
         {/* 08 — контакты */}
         <section className="contacts" id="contacts" aria-labelledby="contacts-title">
           <div className="container">
-            <img
-              className="wave-word"
-              src="/images/smile-wave.svg"
-              alt=""
-              aria-hidden="true"
-              width={5995}
-              height={2332}
-              loading="lazy"
-            />
             <SectionHead id="contacts-title" num="08" title="Запись и контакты" />
             <div className="contacts-grid">
               <address className="contact-card">
@@ -482,8 +509,11 @@ export default function Home() {
                   </li>
                 </ul>
                 <div className="contact-actions">
-                  <MorphLink href={clinic.phoneHref} className="btn btn-accent" icon="phone">
-                    Позвонить и записаться
+                  <MorphLink href={clinic.phoneHref} className="btn btn-accent" icon="calendar" booking>
+                    Записаться онлайн
+                  </MorphLink>
+                  <MorphLink href={clinic.phoneHref} className="btn btn-dark" icon="phone">
+                    Позвонить
                   </MorphLink>
                   <MorphLink href={yandexMapsUrl} className="btn btn-ghost" icon="pin" external>
                     Яндекс Карты
@@ -559,9 +589,17 @@ export default function Home() {
               <Icon name="down" size={20} className="flip-up" />
             </a>
           </div>
+          <p className="footer-credit">
+            Дизайн и разработка —{" "}
+            <a href={developer.url} target="_blank" rel="noopener">
+              {developer.label}
+            </a>
+          </p>
         </div>
       </footer>
       <MobileBar routeHref={yandexMapsUrl} />
+      <BookingDialog />
+      <Assistant />
     </>
   );
 }

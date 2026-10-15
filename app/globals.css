@@ -59,7 +59,7 @@ body {
   background: var(--paper);
   color: var(--choc);
   font-family: var(--ff-text);
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.55;
   font-weight: 450;
   -webkit-font-smoothing: antialiased;
@@ -182,12 +182,12 @@ section[id] {
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  min-height: 52px;
-  padding: 6px 6px 6px 22px;
+  min-height: 58px;
+  padding: 6px 6px 6px 24px;
   border: 1.5px solid transparent;
   border-radius: 999px;
   font-family: var(--ff-text);
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
   line-height: 1.1;
   white-space: nowrap;
@@ -200,8 +200,8 @@ section[id] {
 .btn-icon {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   flex-shrink: 0;
   border-radius: 50%;
   transition: transform 0.3s var(--ease);
@@ -295,7 +295,7 @@ section[id] {
   padding: 6px 18px;
   border: 1.5px solid var(--line-strong);
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -349,7 +349,7 @@ section[id] {
   background: var(--choc);
   color: var(--paper);
   font-family: var(--ff-display);
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1;
@@ -380,7 +380,7 @@ section[id] {
   display: block;
   padding: 8px 16px;
   border-radius: 999px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -400,7 +400,7 @@ section[id] {
 .header-phone {
   margin-left: 12px;
   font-weight: 800;
-  font-size: 15px;
+  font-size: 17px;
   white-space: nowrap;
 }
 .header-cta {
@@ -451,14 +451,14 @@ section[id] {
 }
 .mobile-menu small {
   font-family: var(--ff-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--sky);
 }
 .mobile-menu-foot {
   display: grid;
   gap: 8px;
-  font-size: 15px;
+  font-size: 17px;
   color: rgba(255, 244, 236, 0.75);
 }
 .mobile-menu-foot p span {
@@ -547,14 +547,14 @@ section[id] {
   border-top: 1.5px solid var(--line-strong);
 }
 .hero-meta dt {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--choc-2);
 }
 .hero-meta dd {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
 }
 .hero-title {
@@ -605,7 +605,7 @@ section[id] {
 }
 .hero-city {
   font-family: var(--ff-display);
-  font-size: clamp(13px, 1.1vw, 16px);
+  font-size: clamp(15px, 1.2vw, 18px);
   font-weight: 400;
   line-height: 1.35;
   text-transform: uppercase;
@@ -623,7 +623,7 @@ section[id] {
 }
 .hero-lead {
   max-width: 38ch;
-  font-size: clamp(15px, 1.2vw, 17px);
+  font-size: clamp(17px, 1.35vw, 20px);
   font-weight: 500;
   color: var(--choc-2);
 }
@@ -638,7 +638,8 @@ section[id] {
   place-items: center;
   width: clamp(128px, 11vw, 160px);
   aspect-ratio: 1;
-  margin-top: clamp(-96px, -6vw, -40px);
+  /* Без отрицательного отступа: кнопка не заходит на заголовок. */
+  margin-top: 0;
   border: 1.5px solid var(--line-strong);
   border-radius: 50%;
   background: var(--paper);
@@ -700,7 +701,7 @@ section[id] {
   padding: 6px 12px;
   border-radius: 999px;
   background: var(--paper);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -715,7 +716,9 @@ section[id] {
 .hero-photo-lg {
   grid-area: large;
   aspect-ratio: 4 / 5;
-  margin-top: clamp(-120px, -7vw, -48px);
+  /* Раньше фото подтягивалось под заголовок отрицательным отступом,
+     и буквы «СТОМАТОЛОГИЯ» наезжали на снимок. Теперь стоит ниже текста. */
+  margin-top: 0;
 }
 .hero-photo-lg img {
   object-position: 52% center;
@@ -823,7 +826,7 @@ section[id] {
 }
 .stats dt {
   max-width: 22ch;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--choc-2);
 }
@@ -842,7 +845,7 @@ section[id] {
 .about-note {
   max-width: 48ch;
   margin-top: 20px;
-  font-size: 17px;
+  font-size: 19px;
   color: var(--choc-2);
 }
 .advantages {
@@ -878,13 +881,13 @@ section[id] {
   }
 }
 .advantages h3 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 800;
   line-height: 1.3;
 }
 .advantages p {
   margin-top: 4px;
-  font-size: 14.5px;
+  font-size: 16.5px;
   color: var(--choc-2);
 }
 .collage {
@@ -924,7 +927,7 @@ section[id] {
   transform: rotate(-4deg);
 }
 .collage-note span {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -932,7 +935,7 @@ section[id] {
 }
 .collage-note strong {
   font-family: var(--ff-display);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.35;
 }
@@ -973,8 +976,11 @@ section[id] {
   align-items: center;
   gap: 16px clamp(20px, 3vw, 40px);
 }
-.services-aside .btn {
-  justify-self: end;
+.services-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
 }
 .price-pill {
   display: grid;
@@ -985,7 +991,7 @@ section[id] {
   border-radius: var(--r-md);
 }
 .price-pill span {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -999,7 +1005,7 @@ section[id] {
   color: var(--tangelo);
 }
 .services-hint {
-  font-size: 14.5px;
+  font-size: 16.5px;
   color: rgba(255, 244, 236, 0.75);
 }
 .service-grid {
@@ -1060,7 +1066,7 @@ section[id] {
   min-height: 60px;
 }
 .service-num {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
 }
 .service-icon {
@@ -1105,7 +1111,7 @@ section[id] {
 .service-card p {
   margin-top: 10px;
   margin-bottom: 20px;
-  font-size: 14.5px;
+  font-size: 16.5px;
   line-height: 1.5;
   opacity: 0.8;
 }
@@ -1118,7 +1124,7 @@ section[id] {
   padding-top: 14px;
   border-top: 1px solid currentColor;
   border-top-color: rgba(127, 127, 127, 0.35);
-  font-size: 14px;
+  font-size: 16px;
 }
 /* Вся карточка кликабельна, но в разметке одна ссылка. */
 .service-link::after {
@@ -1146,10 +1152,37 @@ section[id] {
 .service-more::after {
   content: " ↗";
 }
+/* Кнопка записи лежит поверх растянутой ссылки на прайс (.service-link::after),
+   поэтому у неё свой слой — иначе клик уйдёт на прайс. */
+.service-book {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  margin-top: 12px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  transition:
+    transform 0.3s var(--ease),
+    background-color 0.3s;
+}
+@media (hover: hover) {
+  .service-book:hover {
+    transform: translateY(-2px);
+    background: var(--tangelo);
+  }
+}
 .price-disclaimer {
   max-width: 70ch;
   margin-top: clamp(40px, 5vw, 64px);
-  font-size: 13px;
+  font-size: 15px;
   color: rgba(255, 244, 236, 0.62);
 }
 
@@ -1210,7 +1243,7 @@ section[id] {
   padding: 4px 12px;
   border-radius: 999px;
   background: var(--sky);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -1222,7 +1255,7 @@ section[id] {
   line-height: 1.15;
 }
 .step p {
-  font-size: 15px;
+  font-size: 17px;
   color: var(--choc-2);
 }
 
@@ -1259,7 +1292,7 @@ section[id] {
   background: var(--tangelo);
   color: var(--choc);
   font-family: var(--ff-display);
-  font-size: clamp(12px, 1vw, 14px);
+  font-size: clamp(14px, 1.1vw, 16px);
   font-weight: 600;
   line-height: 1.2;
   text-align: center;
@@ -1294,7 +1327,7 @@ section[id] {
   padding: 6px 14px;
   border-radius: 999px;
   background: var(--sky);
-  font-size: 13.5px;
+  font-size: 15.5px;
   font-weight: 700;
 }
 .lead-quote {
@@ -1310,7 +1343,7 @@ section[id] {
 .lead-note {
   max-width: 56ch;
   margin-top: 20px;
-  font-size: 15px;
+  font-size: 17px;
   color: var(--choc-2);
 }
 .team-list {
@@ -1334,25 +1367,52 @@ section[id] {
   background: var(--linen);
   border: 1.5px solid var(--line);
   font-family: var(--ff-display);
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 500;
 }
 .team-list h3 {
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 800;
   line-height: 1.3;
 }
 .team-list p {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--choc-2);
 }
 .team-when {
   padding: 4px 12px;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   white-space: nowrap;
+}
+.team-book {
+  min-height: 40px;
+  padding: 6px 16px;
+  border: 1.5px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 15px;
+  font-weight: 800;
+  white-space: nowrap;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+@media (hover: hover) {
+  .team-book:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+}
+.lead-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.lead-actions .btn {
+  cursor: pointer;
 }
 
 /* 06 Отзывы */
@@ -1361,7 +1421,7 @@ section[id] {
 }
 .reviews-intro {
   max-width: 60ch;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--choc-2);
 }
 .reviews-wrap {
@@ -1416,7 +1476,7 @@ section[id] {
   color: var(--tangelo);
 }
 .review-card blockquote p {
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 550;
   line-height: 1.55;
 }
@@ -1432,12 +1492,12 @@ section[id] {
 }
 .review-card cite {
   font-family: var(--ff-display);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   text-transform: uppercase;
 }
 .review-card time {
-  font-size: 13px;
+  font-size: 15px;
   opacity: 0.75;
 }
 
@@ -1465,7 +1525,7 @@ section[id] {
   display: block;
   margin-top: 16px;
   font-family: var(--ff-text);
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 600;
   letter-spacing: 0;
   line-height: 1.4;
@@ -1491,7 +1551,7 @@ section[id] {
   text-align: left;
 }
 .faq-num {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 800;
   color: var(--choc-2);
 }
@@ -1537,7 +1597,7 @@ section[id] {
 .faq-panel p {
   max-width: 62ch;
   padding: 0 56px 0 52px;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--choc-2);
 }
 .faq-panel .text-link {
@@ -1554,9 +1614,16 @@ section[id] {
   border-radius: var(--r-xl);
   background: var(--linen);
 }
+.smile-banner {
+  margin: 0 clamp(6px, 1vw, 16px) clamp(6px, 1vw, 16px);
+  padding: clamp(24px, 5vw, 72px) clamp(16px, 4vw, 64px);
+  border-radius: var(--r-xl);
+  background: var(--linen);
+}
 .wave-word {
   width: 100%;
-  margin-bottom: clamp(32px, 5vw, 72px);
+  max-width: var(--max);
+  margin-inline: auto;
 }
 .contacts-grid {
   display: grid;
@@ -1595,7 +1662,7 @@ section[id] {
   align-items: start;
   padding: 16px 0;
   border-bottom: 1px solid var(--line);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
 }
 .contact-list svg {
@@ -1713,13 +1780,13 @@ section[id] {
   border-radius: var(--r-md);
   background: var(--paper);
   box-shadow: 0 8px 20px rgba(73, 38, 29, 0.18);
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.4;
   pointer-events: none;
 }
 .map-pin-label strong {
   font-family: var(--ff-display);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
 }
 .map-pin-label span {
@@ -1754,17 +1821,33 @@ section[id] {
   justify-self: start;
 }
 .footer-legal {
-  font-size: 14px;
+  font-size: 16px;
   color: rgba(255, 244, 236, 0.7);
 }
 .footer-links {
   display: grid;
   gap: 6px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
 }
 @media (hover: hover) {
   .footer-links a:hover {
+    color: var(--sky);
+  }
+}
+.footer-credit {
+  margin-top: 24px;
+  font-size: 15px;
+  color: rgba(255, 244, 236, 0.55);
+}
+.footer-credit a {
+  font-weight: 700;
+  color: rgba(255, 244, 236, 0.85);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (hover: hover) {
+  .footer-credit a:hover {
     color: var(--sky);
   }
 }
@@ -1872,9 +1955,9 @@ section[id] {
   .services-aside {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
-  .services-aside .btn {
+  .services-actions {
     grid-column: 1 / -1;
-    justify-self: start;
+    justify-content: flex-start;
   }
   .steps {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2028,6 +2111,11 @@ section[id] {
   .team-when {
     display: none;
   }
+  .team-book {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: -6px;
+  }
   .reviews-controls {
     display: none;
   }
@@ -2067,7 +2155,7 @@ section[id] {
 @media (max-width: 380px) {
   .logo-pill {
     padding-inline: 16px;
-    font-size: 15px;
+    font-size: 17px;
   }
   .header-inner {
     gap: 8px;
@@ -2077,20 +2165,721 @@ section[id] {
     height: 44px;
   }
   .hero-meta dd {
-    font-size: 14px;
+    font-size: 16px;
   }
   .tag-pill {
     padding-inline: 12px;
-    font-size: 11.5px;
+    font-size: 14px;
   }
   .btn {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
 @media (min-width: 1600px) {
   :root {
     --max: 1600px;
+  }
+}
+
+/* ── Плашка демо-версии ──────────────────────────────────── */
+.demo-banner {
+  position: relative;
+  z-index: 51;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 48px 8px var(--pad);
+  background: var(--choc);
+  color: var(--paper);
+  font-size: 15px;
+  line-height: 1.35;
+  text-align: center;
+}
+.demo-banner a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.demo-banner button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.demo-banner :focus-visible {
+  outline-color: var(--sky);
+}
+
+/* ── Онлайн-запись ───────────────────────────────────────── */
+html.menu-open .assistant {
+  visibility: hidden;
+}
+.booking {
+  width: min(640px, calc(100vw - 24px));
+  max-width: none;
+  max-height: min(760px, calc(100dvh - 24px));
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  color: var(--choc);
+  box-shadow: 0 30px 80px rgba(73, 38, 29, 0.35);
+  overflow: hidden;
+}
+.booking::backdrop {
+  background: rgba(73, 38, 29, 0.55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.booking[open] {
+  display: flex;
+}
+.booking-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: inherit;
+}
+.booking-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 24px 12px;
+}
+.booking-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  color: var(--accent);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.booking-title {
+  font-family: var(--ff-display);
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.booking-progress {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding: 0 24px 16px;
+}
+.booking-progress li {
+  height: 4px;
+  border-radius: 4px;
+  background: var(--line);
+  transition: background-color 0.3s;
+}
+.booking-progress li span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+.booking-progress li.is-done {
+  background: var(--choc);
+}
+.booking-progress li.is-current {
+  background: var(--accent);
+}
+.booking-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 4px 24px 20px;
+}
+.booking-fieldset {
+  min-width: 0;
+  margin: 0 0 20px;
+  padding: 0;
+  border: 0;
+}
+.booking-fieldset:disabled {
+  opacity: 0.5;
+}
+.booking-legend {
+  margin-bottom: 12px;
+  padding: 0;
+  font-weight: 800;
+}
+.booking-hint {
+  color: var(--choc-2);
+  font-size: 16px;
+}
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.choice-grid .choice:first-child {
+  grid-column: 1 / -1;
+}
+.choice-list {
+  display: grid;
+  gap: 8px;
+}
+.choice,
+.day {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+.choice input,
+.day input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: inherit;
+}
+.choice > span {
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  height: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: #fff;
+  font-weight: 650;
+  line-height: 1.25;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s;
+}
+.choice--row > span {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+.choice--row small {
+  color: var(--choc-2);
+  font-size: 15px;
+  font-weight: 500;
+}
+.choice input:checked + span {
+  border-color: var(--choc);
+  background: var(--choc);
+  color: var(--paper);
+}
+.choice input:checked + span small {
+  color: rgba(255, 244, 236, 0.75);
+}
+.choice input:focus-visible + span,
+.day:has(input:focus-visible) {
+  outline: 2.5px solid var(--accent);
+  outline-offset: 2px;
+}
+@media (hover: hover) {
+  .choice:hover > span {
+    border-color: var(--line-strong);
+  }
+}
+.day-strip {
+  display: flex;
+  gap: 8px;
+  margin-inline: -24px;
+  padding: 4px 24px 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+.day {
+  flex: 0 0 auto;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-width: 68px;
+  padding: 10px 8px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: #fff;
+  scroll-snap-align: start;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s;
+}
+.day-week {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--choc-2);
+}
+.day-num {
+  font-weight: 800;
+  white-space: nowrap;
+}
+.day:has(input:checked) {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+.day:has(input:checked) .day-week {
+  color: rgba(255, 255, 255, 0.85);
+}
+.day.is-off {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 8px;
+}
+.choice--time > span {
+  justify-content: center;
+  min-height: 46px;
+  font-variant-numeric: tabular-nums;
+}
+.booking-fields {
+  display: grid;
+  gap: 14px;
+}
+.field {
+  display: grid;
+  gap: 6px;
+  font-weight: 700;
+}
+.field small {
+  color: var(--choc-2);
+  font-weight: 500;
+}
+.field input,
+.field textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: #fff;
+  color: var(--choc);
+  font: inherit;
+  font-size: 18px;
+  font-weight: 500;
+  resize: vertical;
+}
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--choc);
+}
+.field [aria-invalid="true"] {
+  border-color: var(--accent);
+}
+.field-error {
+  color: var(--accent);
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+}
+.consent {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 16px;
+  cursor: pointer;
+}
+.consent input {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  accent-color: var(--accent);
+}
+.consent .text-link {
+  display: inline;
+  text-underline-offset: 3px;
+}
+.booking-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px calc(20px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+}
+.booking-call {
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--choc-2);
+}
+.booking-call b {
+  color: var(--choc);
+}
+.booking-done {
+  display: grid;
+  justify-items: start;
+  gap: 18px;
+  padding-bottom: 8px;
+}
+.booking-done-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--sky);
+  color: var(--choc);
+}
+.booking-done-lead {
+  font-size: 18px;
+  font-weight: 650;
+  outline: none;
+}
+.booking-summary {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  border-radius: var(--r-md);
+  background: var(--linen);
+}
+.booking-summary div {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 12px;
+}
+.booking-summary dt {
+  color: var(--choc-2);
+  font-size: 16px;
+}
+.booking-summary dd {
+  font-weight: 700;
+}
+.booking-demo-note {
+  padding: 12px 16px;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: var(--r-md);
+  font-size: 16px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .booking[open] {
+    animation: booking-in 0.35s var(--ease);
+  }
+  .booking[open]::backdrop {
+    animation: fade-in 0.35s ease;
+  }
+}
+@keyframes booking-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@media (max-width: 719px) {
+  .booking {
+    width: 100vw;
+    max-height: 92dvh;
+    margin: auto 0 0;
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+  }
+  .booking-head,
+  .booking-progress,
+  .booking-body,
+  .booking-foot {
+    padding-inline: 16px;
+  }
+  .day-strip {
+    margin-inline: -16px;
+    padding-inline: 16px;
+  }
+  .choice-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .booking-summary div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}
+
+/* ── Онлайн-помощник ─────────────────────────────────────── */
+.assistant {
+  position: fixed;
+  right: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  z-index: 45;
+  display: grid;
+  justify-items: end;
+  gap: 12px;
+}
+.assistant-fab {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 0 22px 0 16px;
+  border: 2px solid var(--paper);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 800;
+  box-shadow: 0 14px 34px rgba(73, 38, 29, 0.32);
+  transition: transform 0.3s var(--ease);
+}
+@media (hover: hover) {
+  .assistant-fab:hover {
+    transform: translateY(-2px);
+  }
+}
+.assistant-panel {
+  display: flex;
+  flex-direction: column;
+  width: min(380px, calc(100vw - 24px));
+  height: min(560px, calc(100dvh - 140px));
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: 0 24px 64px rgba(73, 38, 29, 0.3);
+  overflow: hidden;
+}
+.assistant-panel[hidden] {
+  display: none;
+}
+.assistant-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px 14px 16px;
+  background: var(--choc);
+  color: var(--paper);
+}
+.assistant-head div {
+  display: grid;
+  flex: 1;
+  line-height: 1.25;
+}
+.assistant-head small {
+  color: rgba(255, 244, 236, 0.7);
+  font-size: 14px;
+}
+.assistant-avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--tangelo);
+  color: #fff;
+}
+.icon-btn--sm {
+  width: 36px;
+  height: 36px;
+  border-color: var(--line-light);
+  color: var(--paper);
+}
+.assistant-head :focus-visible {
+  outline-color: var(--sky);
+}
+.assistant-log {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.msg {
+  max-width: 88%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 17px;
+  line-height: 1.45;
+}
+.msg--bot {
+  align-self: flex-start;
+  border-bottom-left-radius: 6px;
+  background: #fff;
+  box-shadow: 0 1px 0 var(--line);
+}
+.msg--user {
+  align-self: flex-end;
+  border-bottom-right-radius: 6px;
+  background: var(--choc);
+  color: var(--paper);
+}
+.msg-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.msg-action {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 6px 12px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.msg-action--accent {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+.msg--typing {
+  display: inline-flex;
+  gap: 4px;
+  padding: 14px 16px;
+}
+.msg--typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--choc-2);
+  opacity: 0.5;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .msg--typing span {
+    animation: typing 1s infinite ease-in-out;
+  }
+  .msg--typing span:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  .msg--typing span:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .assistant-panel:not([hidden]) {
+    animation: booking-in 0.3s var(--ease);
+  }
+}
+@keyframes typing {
+  50% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+.assistant-quick {
+  display: flex;
+  gap: 6px;
+  padding: 0 16px 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.assistant-quick button {
+  flex-shrink: 0;
+  min-height: 34px;
+  padding: 6px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  font-size: 15px;
+  font-weight: 700;
+}
+.assistant-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px 12px 12px 16px;
+  border-top: 1px solid var(--line);
+}
+.assistant-form input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--choc);
+  font: inherit;
+  font-size: 18px;
+}
+.assistant-form input:focus {
+  outline: none;
+  border-color: var(--choc);
+}
+.assistant-send {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+}
+@media (max-width: 1023px) {
+  .assistant {
+    right: 12px;
+    bottom: calc(88px + env(safe-area-inset-bottom));
+  }
+  .assistant-fab {
+    min-height: 52px;
+    padding: 0 15px;
+  }
+  .assistant-fab-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+  .assistant.is-open .assistant-panel {
+    height: min(520px, calc(100dvh - 180px));
+  }
+  .mobile-bar {
+    grid-template-columns: 1fr 1fr auto;
+  }
+  .mobile-bar-route {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Узкие телефоны: с крупным шрифтом длинные подписи не влезают в одну
+   строку — разрешаем перенос, кнопки растягиваем на всю ширину. */
+@media (max-width: 420px) {
+  .btn {
+    white-space: normal;
+    text-align: left;
+  }
+  .hero-actions .btn,
+  .lead-actions .btn,
+  .services-actions .btn,
+  .contact-actions .btn {
+    width: 100%;
+  }
+  .tag-pill {
+    white-space: normal;
+  }
+  /* Нижняя панель: «Записаться» во всю ширину, звонок и маршрут — иконками. */
+  .mobile-bar {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+  }
+  .mobile-bar .btn {
+    white-space: nowrap;
+    padding: 0 14px;
+  }
+  .mobile-bar-call {
+    width: 48px;
+    padding: 0;
+  }
+  .mobile-bar-label {
+    display: none;
   }
 }
 
